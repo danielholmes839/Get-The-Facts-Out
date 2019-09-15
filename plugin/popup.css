@@ -1,0 +1,21 @@
+body {
+	margin: 0px;
+	padding: 0px;
+}
+
+p {
+	text-decoration: underline;
+	display: block;
+}
+
+mark {
+	display: block
+}
+
+button {
+	font-weight: bold;
+	font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+	margin: 10px;
+	padding: 10px;
+	background: #FFFFFF;
+}
