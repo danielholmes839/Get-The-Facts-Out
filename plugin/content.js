@@ -25,12 +25,8 @@ function main() {
 
 function mark(text) {
 	let mark = document.createElement('mark');
-	let a = document.createElement('a');
-
-	a.innerHTML = text;
-	a.href = 'http://danielholmes.ca/';
-	mark.appendChild(a);
-
+	mark.innerHTML = text;
+	mark.style.cssText = "color: black; background: yellow";
 	return mark.outerHTML;
 }
 
