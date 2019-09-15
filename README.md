@@ -8,5 +8,5 @@ GTFO highlights objective statements on web pages. This allows the user to quick
 
 ### Usage Example
 - [video](https://youtu.be/QCyVLDmemJ0)
-- [before](/img/before.PNG)
-- [before](/img/after.PNG)
+- ![before](/img/before.PNG)
+- ![before](/img/after.PNG)
