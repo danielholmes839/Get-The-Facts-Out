@@ -7,6 +7,8 @@ GTFO highlights objective statements on web pages. This allows the user to quick
 - chrome extension to trigger the highlighting
 
 ### Usage Example
-- [video](https://youtu.be/QCyVLDmemJ0)
-- ![before](/img/before.PNG)
-- ![before](/img/after.PNG)
+Watch the video [here](https://youtu.be/QCyVLDmemJ0)!!!!!!!!!
+#### Before
+![before](/img/before.PNG)
+#### After
+![before](/img/after.PNG)
