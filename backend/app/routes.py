@@ -1,14 +1,18 @@
+# Daniel Holmes
+# 2019/9/19
+# routes.py
+# backend to make predictions
+
 from flask import request
 from app import app
 from app.processing import pipeline
 
 
-@app.route('/feedback/')
-@app.route('/classify_one', methods=['POST'])
+@app.route('/classify/groups', methods=['POST'])
 def classify_one():
     """ classify one group of text """
-    data = request.get_json(force=True)
-    sentences, predictions = pipeline(data['text'])
+    group = request.get_json(force=True)['group']
+    sentences, predictions = pipeline(group)
 
     return {
         'sentences': sentences,
@@ -16,18 +20,18 @@ def classify_one():
     }
 
 
-@app.route('/classify_many', methods=['POST'])
+@app.route('/classify/group', methods=['POST'])
 def classify_many():
     """ classify many groups of text """
-    data = request.get_json(force=True)
-    r = []
+    groups = request.get_json(force=True)['groups']
+    predictions = []
 
-    for text in data['texts']:
-        sentences, predictions = pipeline(text)
+    for group in groups:
+        sentences, group_predictions = pipeline(group)
 
-        r.append({
+        predictions.append({
             'sentences': sentences,
-            'predictions': predictions
+            'predictions': group_predictions
         })
 
-    return {'predictions': r}
+    return {'predictions': predictions}

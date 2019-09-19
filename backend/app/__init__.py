@@ -1,5 +1,7 @@
 # Daniel Holmes
+# 2019/9/19
 # __init__.py
+# sets up the app
 
 from flask import Flask
 

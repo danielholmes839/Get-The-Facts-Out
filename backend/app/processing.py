@@ -1,8 +1,13 @@
+# Daniel Holmes
+# 2019/9/19
+# processing.py
+# functions to process text and make predictions
+
 import joblib
 from nltk.tokenize import sent_tokenize, word_tokenize
 
-glove = joblib.load('app/glove.joblib')
-model = joblib.load('app/model2000d.joblib')
+glove = joblib.load('app/glove.joblib')         # glove model from gensim
+model = joblib.load('app/model2000d.joblib')    # trained objective/subjective sentence classifier
 
 
 def pad(vector, length):
@@ -10,11 +15,11 @@ def pad(vector, length):
     n = length - len(vector)
     for i in range(n):
         vector.append(0)
-    return vector[:length]
+    return vector
 
 
 def embed_word(word):
-    """ embed the vector """
+    """ embed a word """
     try:
         return list(glove[word.lower()])
     except KeyError:
@@ -22,7 +27,10 @@ def embed_word(word):
 
 
 def pipeline(text):
-    """ pipeline """
+    """
+    pipeline which separates text into sentences and classifies each sentence
+    returns a list of sentences and predictions
+    """
     sentences = sent_tokenize(text)
     predictions = []
 
@@ -30,6 +38,9 @@ def pipeline(text):
         # split by sentences
         sentence_vec = []
         words = word_tokenize(sentence)
+
+        if len(words) <= 40:
+            continue
 
         for word in words:
             # split words in the sentence
