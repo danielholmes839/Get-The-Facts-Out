@@ -8,7 +8,7 @@ from app import app
 from app.processing import pipeline
 
 
-@app.route('/classify/groups', methods=['POST'])
+@app.route('/classify/group', methods=['POST'])
 def classify_one():
     """ classify one group of text """
     group = request.get_json(force=True)['group']
@@ -20,7 +20,7 @@ def classify_one():
     }
 
 
-@app.route('/classify/group', methods=['POST'])
+@app.route('/classify/groups', methods=['POST'])
 def classify_many():
     """ classify many groups of text """
     groups = request.get_json(force=True)['groups']

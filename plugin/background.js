@@ -10,7 +10,7 @@ chrome.runtime.onMessage.addListener(
 			'headers': {
 				'Content-Type': 'application/json'
 			},
-			'body': JSON.stringify({'texts': request.texts})
+			'body': JSON.stringify({'groups': request.paragraphs})
 		})
 
     	// Make the request to the API and get predictions 

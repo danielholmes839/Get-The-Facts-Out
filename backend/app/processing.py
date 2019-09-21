@@ -15,7 +15,7 @@ def pad(vector, length):
     n = length - len(vector)
     for i in range(n):
         vector.append(0)
-    return vector
+    return vector[:2000]
 
 
 def embed_word(word):
@@ -39,9 +39,6 @@ def pipeline(text):
         sentence_vec = []
         words = word_tokenize(sentence)
 
-        if len(words) <= 40:
-            continue
-
         for word in words:
             # split words in the sentence
             word_vec = embed_word(word)
@@ -51,7 +48,8 @@ def pipeline(text):
 
         # pad the vector and make a prediction
         sentence_vec = pad(sentence_vec, 2000)
-        predictions.append(model.predict([sentence_vec])[0])
+        prediction = model.predict([sentence_vec])[0]
+        predictions.append(prediction)
 
     # return a list of sentences and the prediction
     return sentences, predictions

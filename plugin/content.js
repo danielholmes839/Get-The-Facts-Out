@@ -8,15 +8,15 @@ chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
 function main() {
 	// Get paragraphs
 	var paragraphs = document.getElementsByTagName('p');
-	var paragraphs_text = [];
+	var text = [];
 
 	for (let paragraph of paragraphs) {
-		paragraphs_text.push(paragraph.textContent);
+		text.push(paragraph.textContent);
 	}
 
 	// Send paragraphs to background.js then to the API
 	chrome.runtime.sendMessage({
-		'paragraphs': paragraphs,
+		'paragraphs': text,
 		'message': 'classify/groups'
 	}, function(response) {	// Highlight response predictions
 		highlight(paragraphs, response.predictions);
