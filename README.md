@@ -3,12 +3,8 @@ GTFO highlights objective statements on web pages. This allows the user to quick
 
 ### Consists of:
 - NLP model
-- python API backend to use the model
-- chrome extension to trigger the highlighting
+- Python API backend to host the model
+- Chrome extension to apply highlights
 
-### Usage Example
-Watch the video [here](https://youtu.be/QCyVLDmemJ0)!!!!!!!!!
-#### Before
-![before](/img/before.PNG)
-#### After
-![before](/img/after.PNG)
+### Demo
+Watch the demo [here](https://youtu.be/QCyVLDmemJ0)

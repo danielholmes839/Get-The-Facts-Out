@@ -1,8 +1,19 @@
+# Daniel Holmes
+# 2019/9/19
+# data.py
+#
+
 import joblib
 import pandas as pd
 from nltk.tokenize import word_tokenize
 
-files = ['objective_cv_train.txt', 'objective_test.txt', 'subjective_cv_train.txt', 'subjective_test.txt']
+files = [
+    'objective_cv_train.txt',
+    'objective_test.txt',
+    'subjective_cv_train.txt',
+    'subjective_test.txt'
+]
+
 objective = [1, 1, 0, 0]
 
 
@@ -11,14 +22,13 @@ def pad(vector, length):
     n = length - len(vector)
     for i in range(n):
         vector.append(0)
-    return vector[:length]
+    return vector
 
 
 def embed_word(model, word):
     """ get the glove embedding of a word """
     try:
         return list(model[word])
-
     except KeyError:
         return None
 
@@ -60,7 +70,6 @@ def preprocess(file, label):
     for row, sentence in enumerate(sentences):
         df.at[row, 'sentence'] = sentence
         df.at[row, 'objective'] = label
-        df.at[row, 'length'] = len(sentence.split(' '))
 
     return df
 
@@ -71,7 +80,4 @@ if __name__ == '__main__':
         dfs.append(preprocess(file, label))
 
     df = pd.concat(dfs).reset_index(drop=True)
-    df = df[(df['length'] <= 40) & (df['length'] >= 4)]
     df.to_csv('data.csv')
-
-

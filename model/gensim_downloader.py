@@ -1,5 +1,5 @@
-from joblib import dump
+import joblib
 import gensim.downloader as api
 
 glove = api.load('glove-wiki-gigaword-50')
-dump(glove, 'glove.joblib')
+joblib.dump(glove, 'glove.joblib')

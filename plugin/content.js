@@ -1,5 +1,5 @@
 chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
-	console.log('received message:', message)
+	// Listen for events coming from the popup
 	if (message === 'highlight') {
 		main();
 	} 	
@@ -7,23 +7,24 @@ chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
 
 function main() {
 	// Get paragraphs
-	var paragraphs = document.getElementsByTagName('p', 'span');
+	var paragraphs = document.getElementsByTagName('p');
 	var paragraphs_text = [];
 
 	for (let paragraph of paragraphs) {
 		paragraphs_text.push(paragraph.textContent);
 	}
 
+	// Send paragraphs to background.js then to the API
 	chrome.runtime.sendMessage({
-		'texts': paragraphs_text,
-		'message': 'classify'
-	}, function(response) {
-		console.log(response);
+		'paragraphs': paragraphs,
+		'message': 'classify/groups'
+	}, function(response) {	// Highlight response predictions
 		highlight(paragraphs, response.predictions);
 	})
 }
 
 function mark(text) {
+	// Mark some text
 	let mark = document.createElement('mark');
 	mark.innerHTML = text;
 	mark.style.cssText = "color: black; background: yellow";
@@ -31,7 +32,7 @@ function mark(text) {
 }
 
 function highlight(paragraphs, predictions) {
-
+	// Highlights text in paragraphs 
 	for (let i=0; i<paragraphs.length; i++) {
 
 		// Process each paragraph
